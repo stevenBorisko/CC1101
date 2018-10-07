@@ -2,17 +2,8 @@ CC1101
 ======
 
 driver library for Ti CC1100 / CC1101.<br />
-Contains Lib for Arduino and Raspberry Pi.<br />
+Contains Lib for Raspberry Pi.<br />
 Note: Raspi need wiringPi<br />
-
-Donation
-========
-
-If you are happy with the library and you want to
-spend me a beer, please feel free to use the following link. ;)
-
-https://www.paypal.me/bringmichzumschotter
-
 
 Hardware connection
 ===================
@@ -98,28 +89,6 @@ you can set a frequency operation band by **void CC1100::set_ISM(uint8_t ism_fre
 3 = 868
 4 = 915
 ```
-
-Arduino specific
-================
-
-CC1101 RF settings must be stored in the Arduino EEPROM to have maximum flexibility with different mode settings and reduced memory usage.
-Follow the following steps, how to store the compiled EEPROM file (*.eep) to your Arduino EEPROM. From my experience, you have to repeat this step only, if you have changed the Arduino Version, because the gcc compiler defines the location of the eeprom settings.
-
-- compile the tx_demo or rx_demo example sketch
-- remember the path of your compiled output data (Arduino *.hex file and *.eep file)
-- use the python eeprom_create.py to generate the eeprom array for the eeprom_write.ino
-  This is needed because the compiler can choose the EEPROM position by its own.
-- usage: ``` ./eeprom_create.py <input *.eep file> ```
-- you get an output file with like *.array
-- open that file and copy the array content into the eeprom_write.ino sketch at the correct position
-- compile the eeprom_write.ino sketch
-- upload into to your connected arduino hardware
-- open the Arduino Serial console, set the baudrate to 38400 and restart your arduino hardware
-- type the character ```w``` to the input field and press the sent button
-- wait till eeprom is written
-- sent ```r``` to verify that eeprom is written.
-- if your EEPROM data is written correct, you can compile and upload the RX_Demo or TX_Demo sketch to that hardware
-
 
 Rapsberry Pi
 ============
