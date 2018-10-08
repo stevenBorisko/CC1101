@@ -63,10 +63,10 @@ Compiling
 ============
 
 Compile both the transmitter and the receiver code: `make` or `make all`<br />
-Compile receiver: `make receiver`
-Compile transmitter: `make transmitter`
-Compile and test receiver: `make runReceiver`
-Compile and test transmitter: `make runTransmitter`
+Compile receiver: `make receiver`<br />
+Compile transmitter: `make transmitter`<br />
+Compile and test receiver: `make runReceiver`<br />
+Compile and test transmitter: `make runTransmitter`<br />
 
 Command Line parameters
 -----------------------
