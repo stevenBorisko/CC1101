@@ -1,3 +1,10 @@
+# rules:
+# all
+# transmitter
+# runTransmitter
+# receiver
+# runReceiver
+
 CC := g++
 CFLAGS := -O3
 LDFLAGS := -lwiringPi
@@ -6,27 +13,31 @@ LDFLAGS := -lwiringPi
 # CONTAINING IMPORTANT FILES !! SEE TARGET `CLEAN` FOR REASONING
 OBJDIR := .ObjectFiles/
 
+# All
+
+all: transmitter receiver
+
 # Transmitter
 
 T_OBJS := \
 	$(OBJDIR)cc1100_raspi.o \
-	$(OBJDIR)TX_Demo.o \
+	$(OBJDIR)TX_Demo.o
 T_EXEC := TX_Demo
 transmitter: $(T_OBJS)
 	sudo $(CC) $(T_OBJS) -o $(T_EXEC) $(LDFLAGS)
-runTransmitter: compile
-	sudo ./TX_Demo -v -a1 -r3 -i1000 -t5 -c1 -f434 -m100
+runTransmitter: transmitter
+	sudo ./$(T_EXEC) -v -a1 -r3 -i1000 -t5 -c1 -f434 -m100
 
 # Receiver
 
 R_OBJS := \
 	$(OBJDIR)cc1100_raspi.o \
-	$(OBJDIR)RX_Demo.o \
+	$(OBJDIR)RX_Demo.o
 R_EXEC := RX_Demo
 receiver: $(R_OBJS)
 	sudo $(CC) $(T_OBJS) -o $(R_EXEC) $(LDFLAGS)
-runReveiver: compile
-	sudo ./RX_Demo -v -a3 -c1 -f434 -m100
+runReveiver: receiver
+	sudo ./$(R_EXEC) -v -a3 -c1 -f434 -m100
 
 # Per file compilation rules
 
@@ -123,4 +134,4 @@ $(OBJDIR)TX_Demo.o: TX_Demo.cpp /usr/include/stdc-predef.h cc1100_raspi.h \
  /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 clean:
-	rm -f $(OBJDIR)/* $(EXEC)
+	rm -f $(OBJDIR)/* $(R_EXEC) $(T_EXEC)
