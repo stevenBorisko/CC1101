@@ -1,4 +1,4 @@
-#include "cc1100_raspi.h"
+#include "lib/CC1100.hpp"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
