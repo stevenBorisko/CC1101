@@ -2,7 +2,8 @@ CC1101
 ======
 
 Driver library for Ti CC1100 / CC1101 with a Raspberry Pi.<br />
-Setup guide to get your RBP to where it needs to be to run this code.
+Setup guide to get your RBP to where it needs to be to run this code is found in
+SetupGuide.txt
 
 General description of RF packet
 ================================
@@ -11,13 +12,13 @@ General description of RF packet
 -> pkt_len [1byte] | rx_addr [1byte] | tx_addr [1byte] | payload data [1..60bytes]
 ```
 
-pkt_len = count of bytes which shall transfered over air (rx_addr + tx_addr + payload data)<br />
-rx_addr = address of device, which shall receive the message (0x00 = broadcast to all devices)<br />
-tx_addr = transmitter or my address. the receiver should know who has sent a message.<br />
-payload = 1 to 60 bytes payload data.<br />
+`pkt_len` = count of bytes which shall transfered over air (rx_addr + tx_addr + payload data)<br />
+`rx_addr` = address of device, which shall receive the message (0x00 = broadcast to all devices)<br />
+`tx_addr` = transmitter or my address. the receiver should know who has sent a message.<br />
+`payload` = 1 to 60 bytes payload data.<br />
 
 TX Bytes example:<br />
--> 0x06 0x03 0x01 0x00 0x01 0x02 0x03<br />
+`-> 0x06 0x03 0x01 0x00 0x01 0x02 0x03`<br />
 
 Basic configuration
 ===================
