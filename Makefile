@@ -56,7 +56,8 @@ $(OBJDIR)Setters.o: lib/Setters.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
  /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)Miscellaneous.o: lib/Miscellaneous.cpp /usr/include/stdc-predef.h \
  lib/CC1100.hpp /usr/include/stdio.h /usr/include/features.h \
@@ -74,7 +75,8 @@ $(OBJDIR)Miscellaneous.o: lib/Miscellaneous.cpp /usr/include/stdc-predef.h \
  /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
  /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)WOR.o: lib/WOR.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -92,7 +94,8 @@ $(OBJDIR)WOR.o: lib/WOR.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
  /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)SPI.o: lib/SPI.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -110,7 +113,8 @@ $(OBJDIR)SPI.o: lib/SPI.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
  /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)Debug.o: lib/Debug.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -128,7 +132,8 @@ $(OBJDIR)Debug.o: lib/Debug.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
  /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)Packets.o: lib/Packets.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -146,7 +151,8 @@ $(OBJDIR)Packets.o: lib/Packets.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
  /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)Settings.o: lib/Settings.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -164,7 +170,8 @@ $(OBJDIR)Settings.o: lib/Settings.cpp /usr/include/stdc-predef.h lib/CC1100.hpp 
  /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
  /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)Control.o: lib/Control.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -182,7 +189,8 @@ $(OBJDIR)Control.o: lib/Control.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
  /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h
+ /usr/local/include/wiringPi.h /usr/local/include/wiringPiSPI.h \
+ lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)RX_Demo.o: RX_Demo.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -219,7 +227,7 @@ $(OBJDIR)RX_Demo.o: RX_Demo.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/arm-linux-gnueabihf/bits/pthreadtypes.h \
  /usr/include/alloca.h \
  /usr/include/arm-linux-gnueabihf/bits/stdlib-float.h \
- /usr/include/getopt.h
+ /usr/include/getopt.h lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 $(OBJDIR)TX_Demo.o: TX_Demo.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -256,7 +264,7 @@ $(OBJDIR)TX_Demo.o: TX_Demo.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/arm-linux-gnueabihf/bits/pthreadtypes.h \
  /usr/include/alloca.h \
  /usr/include/arm-linux-gnueabihf/bits/stdlib-float.h \
- /usr/include/getopt.h
+ /usr/include/getopt.h lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 clean:
 	rm -f $(OBJDIR)/* $(R_EXEC) $(T_EXEC)

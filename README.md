@@ -1,42 +1,8 @@
 CC1101
 ======
 
-driver library for Ti CC1100 / CC1101.<br />
-Contains Lib for Raspberry Pi.<br />
-Note: Raspi need wiringPi<br />
-
-Hardware connection
-===================
-
-check cc1101_arduino.h and/or cc1101_raspi.h for Pin description
-
-CC1101 Vdd = 3.3V
-CC1101 max. digital voltage level = 3.3V (not 5V tolerant)
-
-```
-CC1101<->Arduino
-
-Vdd    -    3.3V
-SI     -    MOSI (11)
-SO     -    MISO (12)
-CS     -    SS   (10)
-SCLK   -    SCK  (13)
-GDO2   -    GPIO ( 3)
-GDO0   -    not used in this demo
-GND    -    GND
-
-
-CC1101<->Raspi
-
-Vdd    -    3.3V (P1-01)
-SI     -    MOSI (P1-19)
-SO     -    MISO (P1-21)
-CS     -    SS   (P1-24)
-SCLK   -    SCK  (P1-23)
-GDO2   -    GPIO (P1-22)
-GDO0   -    not used in this demo
-GND    -    P1-25
-```
+Driver library for Ti CC1100 / CC1101 with a Raspberry Pi.<br />
+Setup guide to get your RBP to where it needs to be to run this code.
 
 General description of RF packet
 ================================
@@ -56,11 +22,12 @@ TX Bytes example:<br />
 Basic configuration
 ===================
 
-use **uint8_t CC1100::begin(volatile uint8_t &My_addr)** always as first configuration step. For Arduino devices, this function returns the device address, which was already stored in the Arduino EEPROM.
+Use **uint8_t CC1100::begin(volatile uint8_t &My_addr)** always as first configuration step.
 
 Device address
 --------------
-you should set a unique device address for the transmitter and a unique device address for the receiver. 
+
+You should set a unique device address for the transmitter and a unique device address for the receiver. 
 This can be done with **void CC1100::set_myaddr(uint8_t addr)**.
 
 i.E. -> TX = 0x01 ; RX = 0x03
@@ -68,6 +35,7 @@ i.E. -> TX = 0x01 ; RX = 0x03
 
 Modulation modes
 ----------------
+
 the following modulation modes can be set by **void CC1100::set_mode(uint8_t mode)**. Transmitter and receiver must have the same Mode setting.
 
 ```
@@ -81,6 +49,7 @@ the following modulation modes can be set by **void CC1100::set_mode(uint8_t mod
 
 ISM frequency band
 ------------------
+
 you can set a frequency operation band by **void CC1100::set_ISM(uint8_t ism_freq)** to make it compatible with your hardware.
 
 ```
@@ -90,32 +59,36 @@ you can set a frequency operation band by **void CC1100::set_ISM(uint8_t ism_fre
 4 = 915
 ```
 
-Rapsberry Pi
+Compiling
 ============
 
-How to compile Raspi Demo files
--------------------------------
-
-be sure first, that you have already wireingPi installed on your Raspberry Pi hardware. 
-
-copy RX_Demo.cpp, TX_Demo.cpp, cc1100_raspi.cpp, cc1100_raspi.h in the same directory and compile: <br />
-
-RX_Demo.cpp<br />
-```
-sudo g++ -lwiringPi RX_Demo.cpp cc1100_raspi.cpp -o RX_Demo
-sudo chmod 755 RX_Demo
-```
-
-TX_Demo.cpp<br />
-```
-sudo g++ -lwiringPi TX_Demo.cpp cc1100_raspi.cpp -o TX_Demo
-sudo chmod 755 TX_Demo
-```
+Compile both the transmitter and the receiver code: `make` or `make all`<br />
+Compile receiver: `make receiver`
+Compile transmitter: `make transmitter`
+Compile and test receiver: `make runReceiver`
+Compile and test transmitter: `make runTransmitter`
 
 Command Line parameters
 -----------------------
 
-TX_Demo:<br />
+Receiver (RX_Demo.out):<br />
+  ```
+  CC1100 SW [-h] [-V] [-v] [-a My_Addr] [-c channel] [-f frequency] [-m modulation]
+  -h              			print this help and exit
+  -V              			print version and exit
+  -v              			set verbose flag
+  -a my address [1-255] 		set my address
+  -c channel    [1-255] 		set transmit channel
+  -f frequency  [315,434,868,915]  	set ISM band
+  -m modulation [100,250,500]           set modulation
+  ```
+  
+  Example,<br />
+  ```
+  sudo ./RX_Demo -v -a3 -c1 -f434 -m100
+  ```
+
+Transmitter (TX_Demo.out):<br />
 ```
 CC1100 SW [-h] [-V] [-a My_Addr] [-r RxDemo_Addr] [-i Msg_Interval] [-t tx_retries] [-c channel] [-f frequency]
           [-m modulation]
@@ -135,21 +108,4 @@ CC1100 SW [-h] [-V] [-a My_Addr] [-r RxDemo_Addr] [-i Msg_Interval] [-t tx_retri
   Example,<br />
   ```
   sudo ./TX_Demo -v -a1 -r3 -i1000 -t5 -c1 -f434 -m100
-  ```
-  
-  RX_Demo:<br />
-  ```
-  CC1100 SW [-h] [-V] [-v] [-a My_Addr] [-c channel] [-f frequency] [-m modulation]
-  -h              			print this help and exit
-  -V              			print version and exit
-  -v              			set verbose flag
-  -a my address [1-255] 		set my address
-  -c channel    [1-255] 		set transmit channel
-  -f frequency  [315,434,868,915]  	set ISM band
-  -m modulation [100,250,500]           set modulation
-  ```
-  
-  Example,<br />
-  ```
-  sudo ./RX_Demo -v -a3 -c1 -f434 -m100
   ```

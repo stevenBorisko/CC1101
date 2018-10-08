@@ -1,0 +1,85 @@
+Setup guide for a Raspberry Pi using an RF1100SE operating the CC1101 chip
+	By: Steven Borisko (sborisk@clemson.edu)
+
+Step:
+	- Set up the Raspberry Pi
+	- Connect the RF1100SE to the Raspberry Pi
+	- Install wiringPi
+	- Download CC1101 Code
+
+--------------------------------------------------------------------------------
+--- Set up the Raspberry Pi ---
+--------------------------------------------------------------------------------
+
+- Install Raspbian
+- Update Software
+	`apt-get update && apt-get upgrade`
+- Update Firmware
+	`rpi-update`
+- Enable SPI and I2C kernel modules
+	`raspi-config`
+	- 5: Interfacing Options
+	- P4: SPI
+	- P5: I2C
+
+--------------------------------------------------------------------------------
+--- Connect the RF1100SE to the Raspberry Pi ---
+--------------------------------------------------------------------------------
+
+The two sides of the device kinda looks like this with the pins as numbered
+
+	    Blank         Chip
+	+-----------+ +-----------+
+	| 0 2 4 6 8 | | 8 6 4 2 0 |
+	| 1 3 5 7 9 | | 9 7 5 3 1 |
+	|           | |           |
+	|           | |    +-+    |
+	|           | |    | |    |
+	|           | |    +-+    |
+	|           | |           |
+	+----+-+----+ +----+-+----+
+		 | |           | |
+		 | |           | |
+		 | |           | |
+		 | |           | |
+		 \ /           \ /
+
+Names of pins:
+
+	8: GND | 9:  GND
+	6: CSN | 7: GDO0
+	4:  SO | 5: GDO2
+	2:  SI | 3:  SCK
+	0: VDD | 1:  VDD
+
+Wiring between devices ("-" means pin is unused)
+
+- RF1100SE <-> Raspberry Pi
+	8 <-> 20 | 9 <-> -
+	6 <-> 24 | 7 <-> -
+	4 <-> 21 | 5 <-> 22
+	2 <-> 19 | 3 <-> 23
+	0 <-> 17 | 1 <-> -
+
+- Raspberry Pi <-> RF1100SE
+	24 <-> 6 | 23 <-> 3
+	22 <-> 5 | 21 <-> 4
+	20 <-> 8 | 19 <-> 2
+	18 <-> - | 17 <-> 0
+
+--------------------------------------------------------------------------------
+--- Install wiringPi ---
+--------------------------------------------------------------------------------
+
+Website:
+	Home - http://wiringpi.com
+	Download and Install - http://wiringpi.com/download-and-install/
+	Tree - https://git.drogon.net/?p=wiringPi;a=tree
+Git URL:
+	git://git.drogon.net/wiringPi
+
+Install:
+	- Clone the repo with the git URL provided
+	- Following the file "INSTALL"
+		- cd to the repo
+		- `./build`
