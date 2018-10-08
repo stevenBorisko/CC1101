@@ -57,7 +57,7 @@ uint8_t CC1100::begin(volatile uint8_t &My_addr)
     set_output_power_level(0);            //set PA to 0dBm as default
 
     //set my receiver address
-    set_myaddr(My_addr);                  //My_Addr from EEPROM to global variable
+    set_myaddr(My_addr);                //My_Addr from EEPROM to global variable
 
     if(debug_level > 0){
           printf("...done!\r\n");
@@ -118,7 +118,8 @@ uint8_t CC1100::sidle(void)
 
     while(marcstate != 0x01)              //0x01 = sidle
     {
-        marcstate = (spi_read_register(MARCSTATE) & 0x1F); //read out state of cc1100 to be sure in RX
+        marcstate = (spi_read_register(MARCSTATE) & 0x1F);
+		//read out state of cc1100 to be sure in RX
         //printf("marcstate_rx: 0x%02X\r", marcstate);
     }
     //Serial.println();
@@ -137,7 +138,8 @@ uint8_t CC1100::transmit(void)
 
     while(marcstate != 0x01)              //0x01 = ILDE after sending data
     {
-        marcstate = (spi_read_register(MARCSTATE) & 0x1F); //read out state of cc1100 to be sure in IDLE and TX is finished
+        marcstate = (spi_read_register(MARCSTATE) & 0x1F);
+		//read out state of cc1100 to be sure in IDLE and TX is finished
         //printf("marcstate_tx: 0x%02X ",marcstate);
     }
     //printf("\r\n");
@@ -156,7 +158,8 @@ uint8_t CC1100::receive(void)
 
     while(marcstate != 0x0D)              //0x0D = RX
     {
-        marcstate = (spi_read_register(MARCSTATE) & 0x1F); //read out state of cc1100 to be sure in RX
+        marcstate = (spi_read_register(MARCSTATE) & 0x1F);
+		//read out state of cc1100 to be sure in RX
         //printf("marcstate_rx: 0x%02X\r", marcstate);
     }
     //printf("\r\n");

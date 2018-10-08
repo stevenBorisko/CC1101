@@ -53,10 +53,12 @@ uint8_t CC1100::get_temp(uint8_t *ptemp_Arr)
     ptemp_Arr[1] = temperature % 10;      //isolate last digit
 
     if(debug_level > 0){
-        Serial.print(F("Temp:"));Serial.print(ptemp_Arr[0]);Serial.print(F("."));Serial.println(ptemp_Arr[1]);
+        Serial.print(F("Temp:"));
+		Serial.print(ptemp_Arr[0]);
+		Serial.print(F("."));Serial.println(ptemp_Arr[1]);
     }
 
-    spi_write_register(PTEST,0x7F);       //writes 0x7F back to PTest (app. note)
+    spi_write_register(PTEST,0x7F);       //writes 0x7F back to PTest(app. note)
 
     receive();
     return (*ptemp_Arr);

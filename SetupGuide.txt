@@ -1,7 +1,7 @@
 Setup guide for a Raspberry Pi using an RF1100SE operating the CC1101 chip
 	By: Steven Borisko (sborisk@clemson.edu)
 
-Step:
+Steps:
 	- Set up the Raspberry Pi
 	- Connect the RF1100SE to the Raspberry Pi
 	- Install wiringPi
