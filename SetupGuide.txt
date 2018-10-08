@@ -38,11 +38,11 @@ The two sides of the device kinda looks like this with the pins as numbered
 	|           | |    +-+    |
 	|           | |           |
 	+----+-+----+ +----+-+----+
-		 | |           | |
-		 | |           | |
-		 | |           | |
-		 | |           | |
-		 \ /           \ /
+	     | |           | |
+	     | |           | |
+	     | |           | |
+	     | |           | |
+	     \ /           \ /
 
 Names of pins:
 
