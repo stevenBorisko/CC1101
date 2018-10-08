@@ -1,3 +1,10 @@
+# Targets:
+# # all
+# # # receiver
+# # # transmitter
+# # runReceiver
+# # runTransmitter
+
 CC := g++
 CFLAGS := -O3
 LDFLAGS := -lwiringPi
