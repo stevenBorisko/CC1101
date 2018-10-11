@@ -30,14 +30,14 @@ R_MAIN := $(OBJDIR)RX_Demo.o
 R_EXEC := RX_Demo.out
 receiver: $(BASE_OBJS) $(R_MAIN)
 	sudo $(CC) $(BASE_OBJS) $(R_MAIN) -o $(R_EXEC) $(LDFLAGS)
-runReceiver:
+runReceiver: receiver
 	sudo ./$(R_EXEC) -v -a3 -c1 -f434 -m100
 
 T_MAIN := $(OBJDIR)TX_Demo.o
 T_EXEC := TX_Demo.out
 transmitter: $(BASE_OBJS) $(T_MAIN)
 	sudo $(CC) $(BASE_OBJS) $(T_MAIN) -o $(T_EXEC) $(LDFLAGS)
-runTransmitter:
+runTransmitter: transmitter
 	sudo ./$(T_EXEC) -v -a1 -r3 -i1000 -t5 -c1 -f434 -m100
 
 $(OBJDIR)Setters.o: lib/Setters.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
