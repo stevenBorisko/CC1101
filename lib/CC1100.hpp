@@ -101,39 +101,39 @@ class CC1100
 		// Check if Packet is received within defined time in ms
 		uint8_t wait_for_packet(uint8_t milliseconds);
 		uint8_t sent_packet(
-			uint8_t my_addr,
-			uint8_t rx_addr,
-			uint8_t *txbuffer,
-			uint8_t pktlen,
-			uint8_t tx_retries
-		);
-		void sent_acknolage(uint8_t my_addr, uint8_t tx_addr);
+				uint8_t my_addr,
+				uint8_t rx_addr,
+				uint8_t *txbuffer,
+				uint8_t pktlen,
+				uint8_t tx_retries
+				);
+		void sent_acknowledge(uint8_t my_addr, uint8_t tx_addr);
 
-		uint8_t check_acknolage(
-			uint8_t *rxbuffer,
-			uint8_t pktlen,
-			uint8_t sender,
-			uint8_t my_addr
-		);
+		uint8_t check_acknowledge(
+				uint8_t *rxbuffer,
+				uint8_t pktlen,
+				uint8_t sender,
+				uint8_t my_addr
+				);
 
 		// --- Payload --- //
 
 		// check Payload for ACK or Data
 		uint8_t get_payload(
-			uint8_t rxbuffer[],
-			uint8_t &pktlen_rx,
-			uint8_t &my_addr,
-			uint8_t &sender,
-			int8_t &rssi_dbm,
-			uint8_t &lqi
-		);
+				uint8_t rxbuffer[],
+				uint8_t &pktlen_rx,
+				uint8_t &my_addr,
+				uint8_t &sender,
+				int8_t &rssi_dbm,
+				uint8_t &lqi
+				);
 
 		uint8_t tx_payload_burst(
-			uint8_t my_addr,
-			uint8_t rx_addr,
-			uint8_t *txbuffer,
-			uint8_t length
-		);
+				uint8_t my_addr,
+				uint8_t rx_addr,
+				uint8_t *txbuffer,
+				uint8_t length
+				);
 		// package received
 		uint8_t rx_payload_burst(uint8_t rxbuffer[], uint8_t &pktlen);
 
@@ -161,14 +161,14 @@ class CC1100
 		// [set ISM Band 1=315MHz; 2=433MHz; 3=868MHz; 4=915MHz]
 		void set_ISM(uint8_t ism_freq);
 		/*
-			set modulation mode
-			1 = GFSK_1_2_kb;
-			2 = GFSK_38_4_kb;
-			3 = GFSK_100_kb;
-			4 = MSK_250_kb;
-			5 = MSK_500_kb;
-			6 = OOK_4_8_kb
-		*/
+		   set modulation mode
+		   1 = GFSK_1_2_kb;
+		   2 = GFSK_38_4_kb;
+		   3 = GFSK_100_kb;
+		   4 = MSK_250_kb;
+		   5 = MSK_500_kb;
+		   6 = OOK_4_8_kb
+		 */
 		void set_mode(uint8_t mode);
 		void set_output_power_level(int8_t dbm);
 		// set frequency
@@ -499,7 +499,7 @@ static uint8_t patable_power_433[8] = {0x6C,0x1C,0x06,0x3A,0x51,0x85,0xC8,0xC0};
 static uint8_t patable_power_868[8] = {0x03,0x17,0x1D,0x26,0x50,0x86,0xCD,0xC0};
 static uint8_t patable_power_915[8] = {0x0B,0x1B,0x6D,0x67,0x50,0x85,0xC9,0xC1};
 /*
-static uint8_t patable_power_2430[8] ={0x44,0x84,0x46,0x55,0xC6,0x6E,0x9A,0xFE};
-*/
+   static uint8_t patable_power_2430[8] ={0x44,0x84,0x46,0x55,0xC6,0x6E,0x9A,0xFE};
+ */
 
 #endif
