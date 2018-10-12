@@ -76,6 +76,6 @@ void CC1100::spi_read_burst(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
 	for (uint8_t i=0; i<len ;i++ )
 	{
 		pArr[i] = rbuf[i+1];
-		printf("SPI_arr_read: 0x%02X\n", pArr[i]);
+		//printf("SPI_arr_read: 0x%02X\n", pArr[i]);
 	}
 }

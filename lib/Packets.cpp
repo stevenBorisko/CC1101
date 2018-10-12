@@ -158,12 +158,12 @@ uint8_t CC1100::get_payload(uint8_t rxbuffer[], uint8_t &pktlen, uint8_t &my_add
 		my_addr = rxbuffer[1];                             //set receiver address to my_addr
 		sender = rxbuffer[2];
 
-		if(check_acknowledge(rxbuffer, pktlen, sender, my_addr) == TRUE) //acknowlage received?
+		if(check_acknowledge(rxbuffer, pktlen, sender, my_addr) == TRUE) //acknowledge received?
 		{
 			rx_fifo_erase(rxbuffer);                       //delete rx_fifo bufffer
 			return FALSE;                                //Ack received -> finished
 		}
-		else                                               //real data, and sent acknowladge
+		else                                               //real data, and sent acknowledge
 		{
 			rssi_dbm = rssi_convert(rxbuffer[pktlen + 1]); //converts receiver strength to dBm
 			lqi = lqi_convert(rxbuffer[pktlen + 2]);       //get rf quialtiy indicator
