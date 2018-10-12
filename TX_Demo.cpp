@@ -181,10 +181,10 @@ int main(int argc, char *argv[]) {
 			Tx_fifo[6] = (uint8_t)(time_stamp);
 */
 
-			Tx_fifo[3] = (uint8_t)('!');
+			Tx_fifo[3] = (uint8_t)('H');
 			Tx_fifo[4] = (uint8_t)('I');
-			Tx_fifo[5] = (uint8_t)('A');
-			Tx_fifo[6] = (uint8_t)('H');
+			Tx_fifo[5] = (uint8_t)('!');
+			Tx_fifo[6] = (uint8_t)('\0');
 
 			Pktlen = 0x07;                              //set packet len to 0x13
 
