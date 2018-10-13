@@ -37,7 +37,7 @@ void CC1100::spi_write_burst(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
 	for (uint8_t i=0; i<len ;i++ )
 	{
 		tbuf[i+1] = pArr[i];
-		//printf("SPI_arr_write: 0x%02X\n", tbuf[i+1]);
+		//fprintf(stderr,"SPI_arr_write: 0x%02X\n", tbuf[i+1]);
 	}
 	wiringPiSPIDataRW (0, tbuf, len + 1) ;
 }
@@ -46,7 +46,7 @@ void CC1100::spi_write_strobe(uint8_t spi_instr)
 {
 	uint8_t tbuf[1] = {0};
 	tbuf[0] = spi_instr;
-	//printf("SPI_data: 0x%02X\n", tbuf[0]);
+	//fprintf(stderr,"SPI_data: 0x%02X\n", tbuf[0]);
 	wiringPiSPIDataRW (0, tbuf, 1) ;
 }
 
@@ -62,8 +62,8 @@ uint8_t CC1100::spi_read_register(uint8_t spi_instr)
 	uint8_t len = 2;
 	wiringPiSPIDataRW (0, rbuf, len) ;
 	value = rbuf[1];
-	//printf("SPI_arr_0: 0x%02X\n", rbuf[0]);
-	//printf("SPI_arr_1: 0x%02X\n", rbuf[1]);
+	//fprintf(stderr,"SPI_arr_0: 0x%02X\n", rbuf[0]);
+	//fprintf(stderr,"SPI_arr_1: 0x%02X\n", rbuf[1]);
 	return value;
 }
 
@@ -76,6 +76,6 @@ void CC1100::spi_read_burst(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
 	for (uint8_t i=0; i<len ;i++ )
 	{
 		pArr[i] = rbuf[i+1];
-		//printf("SPI_arr_read: 0x%02X\n", pArr[i]);
+		//fprintf(stderr,"SPI_arr_read: 0x%02X\n", pArr[i]);
 	}
 }

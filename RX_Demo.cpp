@@ -145,15 +145,22 @@ int main(int argc, char *argv[]) {
 
 	cc1100.receive();
 	//------------------------- Main Loop ------------------------
+	int* incomingNum = new int(0);
 	for (;;) {
 		delay(1);                            //delay to reduce system load
 
 		if (cc1100.packet_available())		 //checks if a packed is available
 		{
-			cc1100.get_payload(Rx_fifo, pktlen, rx_addr, sender, rssi_dbm, lqi); //stores the payload data to Rx_fifo
-			fprintf(stdout,"Received:\"%s\"\n",Rx_fifo);
+			//stores the payload data to Rx_fifo
+			cc1100.get_payload(Rx_fifo, pktlen, rx_addr, sender, rssi_dbm, lqi);
+			memcpy(incomingNum,Rx_fifo+2,sizeof(int));
+			// first find the first letter
+			uint32_t time_stamp = millis();             //generate time stamp
+			fprintf(stdout,"%d %d\n",time_stamp,*incomingNum);
+			fflush(stdout);
 		}
 	}
+	delete incomingNum;
 	return 0;
 }
 //-------------------- END OF MAIN --------------------------------

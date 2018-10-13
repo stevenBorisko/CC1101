@@ -122,7 +122,7 @@ void CC1100::set_fec(uint8_t cfg)
 	data = spi_read_register(MDMCFG1);
 	data = (data & 0x7F) | (((cfg) << 7) & 0x80);
 	spi_write_register(MDMCFG1, data);
-	printf("MDMCFG1: 0x%02X\n", data);
+	fprintf(stderr,"MDMCFG1: 0x%02X\n", data);
 }
 
 void CC1100::set_data_whitening(uint8_t cfg)
@@ -131,7 +131,7 @@ void CC1100::set_data_whitening(uint8_t cfg)
 	data = spi_read_register(PKTCTRL0);
 	data = (data & 0xBF) | (((cfg) << 6) & 0x40);
 	spi_write_register(PKTCTRL0, data);
-	//printf("PKTCTRL0: 0x%02X\n", data);
+	//fprintf(stderr,"PKTCTRL0: 0x%02X\n", data);
 }
 
 void CC1100::set_modulation_type(uint8_t cfg)
@@ -140,7 +140,7 @@ void CC1100::set_modulation_type(uint8_t cfg)
 	data = spi_read_register(MDMCFG2);
 	data = (data & 0x8F) | (((cfg) << 4) & 0x70);
 	spi_write_register(MDMCFG2, data);
-	//printf("MDMCFG2: 0x%02X\n", data);
+	//fprintf(stderr,"MDMCFG2: 0x%02X\n", data);
 }
 
 void CC1100::set_preamble_len(uint8_t cfg)
@@ -149,7 +149,7 @@ void CC1100::set_preamble_len(uint8_t cfg)
 	data = spi_read_register(MDMCFG1);
 	data = (data & 0x8F) | (((cfg) << 4) & 0x70);
 	spi_write_register(MDMCFG1, data);
-	//printf("MDMCFG2: 0x%02X\n", data);
+	//fprintf(stderr,"MDMCFG2: 0x%02X\n", data);
 }
 
 void CC1100::set_manchaster_encoding(uint8_t cfg)
@@ -158,7 +158,7 @@ void CC1100::set_manchaster_encoding(uint8_t cfg)
 	data = spi_read_register(MDMCFG2);
 	data = (data & 0xF7) | (((cfg) << 3) & 0x08);
 	spi_write_register(MDMCFG2, data);
-	//printf("MDMCFG2: 0x%02X\n", data);
+	//fprintf(stderr,"MDMCFG2: 0x%02X\n", data);
 }
 
 void CC1100::set_sync_mode(uint8_t cfg) // 0=no sync word; 1,2 = 16bit sync word, 3= 32bit sync word
@@ -167,7 +167,7 @@ void CC1100::set_sync_mode(uint8_t cfg) // 0=no sync word; 1,2 = 16bit sync word
 	data = spi_read_register(MDMCFG2);
 	data = (data & 0xF8) | (cfg & 0x07);
 	spi_write_register(MDMCFG2, data);
-	//printf("MDMCFG2: 0x%02X\n", data);
+	//fprintf(stderr,"MDMCFG2: 0x%02X\n", data);
 }
 
 void CC1100::set_datarate(uint8_t mdmcfg4, uint8_t mdmcfg3, uint8_t deviant)

@@ -15,7 +15,7 @@ uint8_t CC1100::begin(volatile uint8_t &My_addr)
 	set_debug_level(1);   //set debug level of CC1101 outputs
 
 	if(debug_level > 0){
-		printf("Init CC1100...\r\n");
+		fprintf(stderr,"Init CC1100...\r\n");
 	}
 
 	spi_begin();                          //inits SPI Interface
@@ -30,15 +30,15 @@ uint8_t CC1100::begin(volatile uint8_t &My_addr)
 	//checks if valid Chip ID is found. Usualy 0x03 or 0x14. if not -> abort
 	if(version == 0x00 || version == 0xFF){
 		if(debug_level > 0){
-			printf("no CC11xx found!\r\n");
+			fprintf(stderr,"no CC11xx found!\r\n");
 		}
 		end();                        //CC1100 Powerdown and disable SPI bus
 		return FALSE;
 	}
 
 	if(debug_level > 0){
-		printf("Partnumber: 0x%02X\r\n", partnum);
-		printf("Version   : 0x%02X\r\n", version);
+		fprintf(stderr,"Partnumber: 0x%02X\r\n", partnum);
+		fprintf(stderr,"Version   : 0x%02X\r\n", version);
 	}
 
 
@@ -60,7 +60,7 @@ uint8_t CC1100::begin(volatile uint8_t &My_addr)
 	set_myaddr(My_addr);                //My_Addr from EEPROM to global variable
 
 	if(debug_level > 0){
-		printf("...done!\r\n");
+		fprintf(stderr,"...done!\r\n");
 	}
 
 	receive();                                  //set CC1100 in receive mode
@@ -120,7 +120,7 @@ uint8_t CC1100::sidle(void)
 	{
 		marcstate = (spi_read_register(MARCSTATE) & 0x1F);
 		//read out state of cc1100 to be sure in RX
-		//printf("marcstate_rx: 0x%02X\r", marcstate);
+		//fprintf(stderr,"marcstate_rx: 0x%02X\r", marcstate);
 	}
 	//Serial.println();
 	delayMicroseconds(100);
@@ -140,9 +140,9 @@ uint8_t CC1100::transmit(void)
 	{
 		marcstate = (spi_read_register(MARCSTATE) & 0x1F);
 		//read out state of cc1100 to be sure in IDLE and TX is finished
-		//printf("marcstate_tx: 0x%02X ",marcstate);
+		//fprintf(stderr,"marcstate_tx: 0x%02X ",marcstate);
 	}
-	//printf("\r\n");
+	//fprintf(stderr,"\r\n");
 	delayMicroseconds(100);
 	return TRUE;
 }
@@ -160,9 +160,9 @@ uint8_t CC1100::receive(void)
 	{
 		marcstate = (spi_read_register(MARCSTATE) & 0x1F);
 		//read out state of cc1100 to be sure in RX
-		//printf("marcstate_rx: 0x%02X\r", marcstate);
+		//fprintf(stderr,"marcstate_rx: 0x%02X\r", marcstate);
 	}
-	//printf("\r\n");
+	//fprintf(stderr,"\r\n");
 	delayMicroseconds(100);
 	return TRUE;
 }

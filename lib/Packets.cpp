@@ -11,12 +11,12 @@ uint8_t CC1100::packet_available()
 		if(spi_read_register(IOCFG2) == 0x06)               //if sync word detect mode is used
 		{
 			while(digitalRead(GDO2) == TRUE){               //wait till sync word is fully received
-				printf("!\r\n");
+				fprintf(stderr,"!\r\n");
 			}                                                  //for sync word receive
 		}
 
 		if(debug_level > 0){
-			//printf("Pkt->:\r\n");
+			//fprintf(stderr,"Pkt->:\r\n");
 		}
 
 		return TRUE;
@@ -48,7 +48,7 @@ uint8_t CC1100::sent_packet(uint8_t my_addr, uint8_t rx_addr, uint8_t *txbuffer,
 
 	if(pktlen > (FIFOBUFFER - 1))
 	{
-		printf("ERROR: package size overflow\r\n");
+		fprintf(stderr,"ERROR: package size overflow\r\n");
 		return FALSE;
 	}
 
@@ -82,8 +82,8 @@ uint8_t CC1100::sent_packet(uint8_t my_addr, uint8_t rx_addr, uint8_t *txbuffer,
 		tx_retries_count++;                                     //increase tx retry counter
 
 		if(debug_level > 0){                                    //debug output messages
-			printf(" #:");
-			printf("0x%02X \r\n", tx_retries_count);
+			fprintf(stderr," #:");
+			fprintf(stderr,"0x%02X \r\n", tx_retries_count);
 		}
 	}while(tx_retries_count <= tx_retries);                     //while count of retries is reaches
 
@@ -102,7 +102,7 @@ void CC1100::sent_acknowledge(uint8_t my_addr, uint8_t tx_addr)
 	receive();                                                  //set CC1100 in receive mode
 
 	if(debug_level > 0){                                        //debut output
-		printf("Ack_sent!\r\n");
+		fprintf(stderr,"Ack_sent!\r\n");
 	}
 }
 
@@ -118,7 +118,7 @@ uint8_t CC1100::check_acknowledge(uint8_t *rxbuffer, uint8_t pktlen, uint8_t sen
 	{
 		if(rxbuffer[1] == BROADCAST_ADDRESS){                           //if receiver address BROADCAST_ADDRESS skip acknowledge
 			if(debug_level > 0){
-				printf("BROADCAST ACK\r\n");
+				fprintf(stderr,"BROADCAST ACK\r\n");
 			}
 			return FALSE;
 		}
@@ -127,10 +127,10 @@ uint8_t CC1100::check_acknowledge(uint8_t *rxbuffer, uint8_t pktlen, uint8_t sen
 		crc = check_crc(lqi);
 
 		if(debug_level > 0){
-			printf("ACK! ");
-			printf("RSSI:%i ",rssi_dbm);
-			printf("LQI:0x%02X ",lqi);
-			printf("CRC:0x%02X\r\n",crc);
+			fprintf(stderr,"ACK! ");
+			fprintf(stderr,"RSSI:%i ",rssi_dbm);
+			fprintf(stderr,"LQI:0x%02X ",lqi);
+			fprintf(stderr,"CRC:0x%02X\r\n",crc);
 		}
 		return TRUE;
 	}
@@ -172,21 +172,21 @@ uint8_t CC1100::get_payload(uint8_t rxbuffer[], uint8_t &pktlen, uint8_t &my_add
 			if(debug_level > 0){                           //debug output messages
 				if(rxbuffer[1] == BROADCAST_ADDRESS)       //if my receiver address is BROADCAST_ADDRESS
 				{
-					printf("BROADCAST message\r\n");
+					fprintf(stderr,"BROADCAST message\r\n");
 				}
 
-				printf("RX_FIFO:");
+				fprintf(stderr,"RX_FIFO:");
 				for(uint8_t i = 0 ; i < pktlen + 1; i++)   //showes rx_buffer for debug
 				{
-					printf("0x%02X ", rxbuffer[i]);
+					fprintf(stderr,"0x%02X ", rxbuffer[i]);
 				}
-				printf("| 0x%02X 0x%02X |", rxbuffer[pktlen+1], rxbuffer[pktlen+2]);
-				printf("\r\n");
+				fprintf(stderr,"| 0x%02X 0x%02X |", rxbuffer[pktlen+1], rxbuffer[pktlen+2]);
+				fprintf(stderr,"\r\n");
 
-				printf("RSSI:%d ", rssi_dbm);
-				printf("LQI:");printf("0x%02X ", lqi);
-				printf("CRC:");printf("0x%02X ", crc);
-				printf("\r\n");
+				fprintf(stderr,"RSSI:%d ", rssi_dbm);
+				fprintf(stderr,"LQI:");fprintf(stderr,"0x%02X ", lqi);
+				fprintf(stderr,"CRC:");fprintf(stderr,"0x%02X ", crc);
+				fprintf(stderr,"\r\n");
 			}
 
 			my_addr = rxbuffer[1];                         //set receiver address to my_addr
@@ -213,12 +213,12 @@ uint8_t CC1100::tx_payload_burst(uint8_t my_addr, uint8_t rx_addr,
 	spi_write_burst(TXFIFO_BURST,txbuffer,length); //writes TX_Buffer +1 because of pktlen must be also transfered
 
 	if(debug_level > 0){
-		printf("TX_FIFO: ");
+		fprintf(stderr,"TX_FIFO: ");
 		for(uint8_t i = 0 ; i < length; i++)       //TX_fifo debug out
 		{
-			printf("0x%02X ", txbuffer[i]);
+			fprintf(stderr,"0x%02X ", txbuffer[i]);
 		}
-		printf("\r\n");
+		fprintf(stderr,"\r\n");
 	}
 	return TRUE;
 }
@@ -239,7 +239,7 @@ uint8_t CC1100::rx_payload_burst(uint8_t rxbuffer[], uint8_t &pktlen)
 	else
 	{
 		if(debug_level > 0){
-			printf("no bytes in RX buffer or RX Overflow!: ");printf("0x%02X \r\n", bytes_in_RXFIFO);
+			fprintf(stderr,"no bytes in RX buffer or RX Overflow!: ");fprintf(stderr,"0x%02X \r\n", bytes_in_RXFIFO);
 		}
 		sidle();                                                  //set to IDLE
 		spi_write_strobe(SFRX);delayMicroseconds(100);            //flush RX Buffer
