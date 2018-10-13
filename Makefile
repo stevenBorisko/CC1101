@@ -28,21 +28,23 @@ all: receiver transmitter
 
 R_MAIN := $(OBJDIR)RX_Demo.o
 R_EXEC := RX_Demo.out
+R_ERR := R_err.log
 receiver: $(BASE_OBJS) $(R_MAIN)
 	sudo $(CC) $(BASE_OBJS) $(R_MAIN) -o $(R_EXEC) $(LDFLAGS)
 testReceiver: receiver
 	sudo ./$(R_EXEC) -v -a3 -c1 -f434 -m100
 runReceiver: receiver
-	sudo ./$(R_EXEC) -a3 -c1 -f434 -m100 2>R_err.log
+	sudo ./$(R_EXEC) -a3 -c1 -f434 -m100 2>$(R_ERR)
 
 T_MAIN := $(OBJDIR)TX_Demo.o
 T_EXEC := TX_Demo.out
+T_ERR := T_err.log
 transmitter: $(BASE_OBJS) $(T_MAIN)
 	sudo $(CC) $(BASE_OBJS) $(T_MAIN) -o $(T_EXEC) $(LDFLAGS)
 testTransmitter: transmitter
 	sudo ./$(T_EXEC) -v -a1 -r3 -i1000 -t5 -c1 -f434 -m100
 runTransmitter: transmitter
-	sudo ./$(T_EXEC) -a1 -r3 -i1000 -t0 -c1 -f434 -m100 2>T_err.log
+	sudo ./$(T_EXEC) -a1 -r3 -i1000 -t0 -c1 -f434 -m100 2>$(T_ERR)
 
 $(OBJDIR)Setters.o: lib/Setters.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/stdio.h /usr/include/features.h \
@@ -271,4 +273,4 @@ $(OBJDIR)TX_Demo.o: TX_Demo.cpp /usr/include/stdc-predef.h lib/CC1100.hpp \
  /usr/include/getopt.h lib/Macros.hpp
 	sudo $(CC) -c $< -o $@ $(CFLAGS)
 clean:
-	rm -f $(OBJDIR)/* $(R_EXEC) $(T_EXEC)
+	rm -f $(OBJDIR)/* $(R_EXEC) $(T_EXEC) $(R_ERR) $(T_ERR)

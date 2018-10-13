@@ -153,7 +153,7 @@ int main(int argc, char *argv[]) {
 		{
 			//stores the payload data to Rx_fifo
 			cc1100.get_payload(Rx_fifo, pktlen, rx_addr, sender, rssi_dbm, lqi);
-			memcpy(incomingNum,Rx_fifo+2,sizeof(int));
+			memcpy(incomingNum,Rx_fifo+3,sizeof(int));
 			// first find the first letter
 			uint32_t time_stamp = millis();             //generate time stamp
 			fprintf(stdout,"%d %d\n",time_stamp,*incomingNum);
