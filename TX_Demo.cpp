@@ -174,7 +174,7 @@ int main(int argc, char *argv[]) {
 
 			uint32_t time_stamp = millis();             //generate time stamp
 
-			memcpy(Tx_fifo,&time_stamp,sizeof(int));
+			memcpy(Tx_fifo+3,&time_stamp,sizeof(int));
 /*
 			Tx_fifo[3] = (uint8_t)(time_stamp >> 24);   //split 32-Bit timestamp to 4 byte array
 			Tx_fifo[4] = (uint8_t)(time_stamp >> 16);
