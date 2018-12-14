@@ -63,11 +63,17 @@ you can set a frequency operation band by **void CC1100::set_ISM(uint8_t ism_fre
 Compiling
 ============
 
+Before compiling, you MUST run `make ObjectDirectory`<br />
+
 Compile both the transmitter and the receiver code: `make` or `make all`<br />
 Compile receiver: `make receiver`<br />
 Compile transmitter: `make transmitter`<br />
 Compile and test receiver: `make testReceiver`<br />
 Compile and test transmitter: `make testTransmitter`<br />
+
+Clean all: `make clean`<br />
+Clean receiver: `make cleanReceiver`<br />
+Clean transmitter: `make cleanTransmitter`<br />
 
 Command Line parameters
 -----------------------

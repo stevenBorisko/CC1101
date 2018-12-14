@@ -12,15 +12,21 @@ Steps:
 --------------------------------------------------------------------------------
 
 - Install Raspbian
+	`sudo raspi-config`
+	- 5: Interfacing Options
+	- P2: SSH
 - Update Software
-	`apt-get update && apt-get upgrade`
+	`sudo apt-get update && sudo apt-get upgrade`
 - Update Firmware
-	`rpi-update`
+	`sudo rpi-update`
+	`sudo reboot`
 - Enable SPI and I2C kernel modules
-	`raspi-config`
+	`sudo raspi-config`
 	- 5: Interfacing Options
 	- P4: SPI
 	- P5: I2C
+- Install git:
+	`sudo apt-get install git`
 
 --------------------------------------------------------------------------------
 --- Connect the RF1100SE to the Raspberry Pi ---
@@ -80,6 +86,7 @@ Git URL:
 
 Install:
 	- Clone the repo with the git URL provided
+		`git clone git://git.drogon.net/wiringPi`
 	- Following the file "INSTALL"
-		- cd to the repo
-		- `./build`
+		`cd wiringPi`
+		`./build`
